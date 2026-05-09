@@ -1,11 +1,3 @@
-/*
- * Tiny Tapeout Top-Level Wrapper
- *
- * Connects procedural graphics core to Tiny Tapeout IO.
- *
- * SPDX-License-Identifier: Apache-2.0
- */
-
 `default_nettype none
 
 module tt_um_connerdaehler_boop (
@@ -22,26 +14,18 @@ module tt_um_connerdaehler_boop (
 );
 
     // ============================================================
-    // Control Signals
+    // GPU-like control mapping (shader uniforms)
     // ============================================================
 
-    wire [1:0] mode;
-    wire       freeze;
-    wire       invert;
-
-    assign mode   = ui_in[1:0];
-    assign freeze = ui_in[2];
-    assign invert = ui_in[3];
+    wire [1:0] mode   = ui_in[1:0];
+    wire       freeze = ui_in[2];
+    wire       invert = ui_in[3];
 
     // ============================================================
-    // Graphics Output
+    // Pixel output from fragment core
     // ============================================================
 
     wire [7:0] pixel;
-
-    // ============================================================
-    // Graphics Core
-    // ============================================================
 
     procedural_graphics_core graphics_core (
         .clk(clk),
@@ -55,7 +39,7 @@ module tt_um_connerdaehler_boop (
     );
 
     // ============================================================
-    // Tiny Tapeout Outputs
+    // IO mapping
     // ============================================================
 
     assign uo_out  = pixel;
@@ -64,7 +48,7 @@ module tt_um_connerdaehler_boop (
     assign uio_oe  = 8'b00000000;
 
     // ============================================================
-    // Prevent Unused Signal Warnings
+    // keep signals alive
     // ============================================================
 
     wire _unused;
