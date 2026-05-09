@@ -9,8 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-This project implements a procedural graphics generator ASIC that produces grayscale pixel values in real time using simple arithmetic logic. Future interations can make it "GPU-esque"
-
+This project implements a procedural graphics generator ASIC that produces grayscale pixel values in real time using simple arithmetic logic. Essentially, this is a single-pixel, scan-based fragment shader engine.
 ## How to test
 
 The design is tested using a cocotb-based Python testbench that reconstructs full images from the pixel stream. It creates 4 output images for each mode
