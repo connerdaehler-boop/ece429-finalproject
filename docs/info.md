@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+This project implements a procedural graphics generator ASIC that produces grayscale pixel values in real time using simple arithmetic logic. Future interations can make it "GPU-esque"
 
 ## How to test
 
-Explain how to use your project
+The design is tested using a cocotb-based Python testbench that reconstructs full images from the pixel stream. It creates 4 output images for each mode
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+None is required
