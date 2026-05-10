@@ -8,86 +8,107 @@ WIDTH = 256
 HEIGHT = 256
 
 
-def save_frame(frame, filename):
-    img = Image.fromarray(frame.astype(np.uint8), mode="L")
-    img.save(filename)
+# ============================================================
+# INPUT IMAGE
+# ============================================================
+
+def generate_test_image():
+    img = np.zeros((HEIGHT, WIDTH), dtype=np.uint8)
+
+    # solid background
+    img[:, :] = 40
+
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+
+            # vertical bright bar
+            if 90 < x < 130:
+                img[y, x] = 180
+
+            # circle
+            dx = x - 160
+            dy = y - 120
+            if dx*dx + dy*dy < 45*45:
+                img[y, x] = 255
+
+            # small dark hole inside circle
+            if dx*dx + dy*dy < 20*20:
+                img[y, x] = 20
+
+    return img
 
 
-async def capture_frame(dut, mode_bits):
-    """
-    mode_bits = 0,1,2,3
-    ui_in format:
-        [7:2] unused
-        [1:0] mode
-        [2] freeze
-        [3] invert
-    """
+# ============================================================
+# SAFE READ
+# ============================================================
 
-    dut.ui_in.value = mode_bits  # freeze=0, invert=0
+def safe(val):
+    try:
+        return int(val)
+    except:
+        return 0
+
+
+# ============================================================
+# SAVE
+# ============================================================
+
+def save(img, name):
+    Image.fromarray(img.astype(np.uint8), mode="L").save(name)
+
+
+# ============================================================
+# RUN FRAME
+# ============================================================
+
+async def run_frame(dut, mode, img):
 
     frame = np.zeros((HEIGHT, WIDTH), dtype=np.uint8)
 
-    x = 0
-    y = 0
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
 
-    for _ in range(WIDTH * HEIGHT):
+            dut.ui_in.value = mode
+            dut.uio_in.value = int(img[y, x])
 
-        await ClockCycles(dut.clk, 1)
+            await ClockCycles(dut.clk, 1)
 
-        pixel = int(dut.uo_out.value)
-        frame[y, x] = pixel
-
-        x += 1
-        if x == WIDTH:
-            x = 0
-            y += 1
+            frame[y, x] = safe(dut.uo_out.value)
 
     return frame
 
 
+# ============================================================
+# TEST
+# ============================================================
+
 @cocotb.test()
-async def test_procedural_graphics_image(dut):
+async def test_pipeline(dut):
 
-    dut._log.info("Starting procedural graphics image test")
-
-    # Clock
     clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
 
-    # Reset
-    dut.ena.value = 1
-    dut.uio_in.value = 0
-    dut.ui_in.value = 0
     dut.rst_n.value = 0
+    dut.ena.value = 1
 
     await ClockCycles(dut.clk, 5)
+
     dut.rst_n.value = 1
     await ClockCycles(dut.clk, 2)
 
-    # ============================================================
-    # MODE 0
-    # ============================================================
-    frame0 = await capture_frame(dut, 0b00)
-    save_frame(frame0, "mode0.png")
-    dut._log.info("Saved mode0.png")
+    img = generate_test_image()
 
-    # ============================================================
-    # MODE 1
-    # ============================================================
-    frame1 = await capture_frame(dut, 0b01)
-    save_frame(frame1, "mode1.png")
-    dut._log.info("Saved mode1.png")
+    # SAVE INPUT IMAGE (important for debugging)
+    save(img, "input.png")
 
-    # ============================================================
-    # MODE 2
-    # ============================================================
-    frame2 = await capture_frame(dut, 0b10)
-    save_frame(frame2, "mode2.png")
-    dut._log.info("Saved mode2.png")
+    frame0 = await run_frame(dut, 0b00, img)
+    save(frame0, "mode0.png")
 
-    # ============================================================
-    # MODE 3
-    # ============================================================
-    frame3 = await capture_frame(dut, 0b11)
-    save_frame(frame3, "mode3.png")
-    dut._log.info("Saved mode3.png")
+    frame1 = await run_frame(dut, 0b01, img)
+    save(frame1, "mode1.png")
+
+    frame2 = await run_frame(dut, 0b10, img)
+    save(frame2, "mode2.png")
+
+    frame3 = await run_frame(dut, 0b11, img)
+    save(frame3, "mode3.png")

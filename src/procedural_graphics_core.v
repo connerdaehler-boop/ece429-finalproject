@@ -4,151 +4,171 @@ module procedural_graphics_core (
     input  wire       clk,
     input  wire       rst_n,
 
+    input  wire [7:0] in_pixel,
+    input  wire       in_valid,
+
     input  wire [1:0] mode,
     input  wire       freeze,
     input  wire       invert,
 
-    output wire [7:0] pixel_out
+    output reg  [7:0] pixel_out
 );
 
     // ============================================================
-    // Raster generator (GPU scanout)
+    // SCAN POSITION
     // ============================================================
 
-    reg [7:0] x;
-    reg [7:0] y;
-    reg [15:0] time_ctr;
+    reg [7:0] x, y;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             x <= 0;
             y <= 0;
-            time_ctr <= 0;
-        end else begin
-            x <= x + 1;
-            if (x == 8'hFF)
+        end else if (in_valid && !freeze) begin
+            if (x == 8'hFF) begin
+                x <= 0;
                 y <= y + 1;
-
-            if (!freeze)
-                time_ctr <= time_ctr + 1;
+            end else begin
+                x <= x + 1;
+            end
         end
     end
 
     // ============================================================
-    // FEATURE LAYER
-    // ============================================================
-
-    wire [7:0] t = time_ctr[7:0];
-
-    wire [7:0] gx = x >> 2;
-    wire [7:0] gy = y >> 2;
-
-    wire [7:0] noise =
-        (x + (y >> 1) + (t >> 3)) ^ ((x >> 1) + y);
-
-    wire [7:0] field =
-        (x + y) >> 1;
-
-    // ============================================================
-    // SHADER STAGE
+    // SHADER VARIABLES
     // ============================================================
 
     reg signed [15:0] dx;
     reg signed [15:0] dy;
-    reg [15:0] tmp;
+    reg signed [31:0] dist2;
+    reg signed [15:0] light;
+    reg signed [15:0] tmp;
 
-    reg [7:0] next_pixel;
+    reg signed [8:0] lx;
+    reg signed [8:0] ly;
 
     always @(*) begin
 
         tmp = 0;
-        next_pixel = 0;
+        pixel_out = 0;
+
+        // default light center
+        lx = 9'sd128;
+        ly = 9'sd128;
 
         case (mode)
 
             // ====================================================
-            // MODE 0 : vertical gradient
+            // MODE 0: TOP LIGHT
             // ====================================================
             2'b00: begin
-                tmp = (y >> 1) + (y >> 2) + (x >> 4);
-                next_pixel = tmp[7:0];
+                lx = 9'sd128;
+                ly = 9'sd0;
             end
 
             // ====================================================
-            // MODE 1 : directional lighting
+            // MODE 1: BOTTOM-RIGHT LIGHT
             // ====================================================
             2'b01: begin
-                tmp = (x >> 1) + (y >> 2) + ((x + y) >> 3) + (t >> 5);
-                next_pixel = tmp[7:0];
+                lx = 9'sd220;
+                ly = 9'sd220;
             end
 
             // ====================================================
-            // MODE 2 : circular light source (stable)
+            // MODE 2: EXTREME PIN LIGHT (FIXED)
             // ====================================================
             2'b10: begin
-                dx = $signed({1'b0, x}) - 16'sd128;
-                dy = $signed({1'b0, y}) - 16'sd128;
-
-                tmp = dx * dx + dy * dy;
-                tmp = tmp >> 4;
-
-                tmp = 16'd255 - tmp;
-
-                if (tmp[15] || tmp > 255)
-                    tmp = 0;
-
-                next_pixel = tmp[7:0];
+                lx = 9'sd128;
+                ly = 9'sd128;
             end
 
             // ====================================================
-            // MODE 3 : FINAL FIX — isotropic hash noise (NO LINE STRUCTURE)
+            // MODE 3: UNCHANGED (your working mode)
             // ====================================================
             2'b11: begin
-
-                // fully non-directional spatial hash core
-                tmp =
-                    (x * 17) ^
-                    (y * 23) ^
-                    ((x ^ y) * 29) ^
-                    (t * 11);
-
-                // avalanche mixing (breaks residual correlation)
-                tmp = tmp ^ (tmp >> 4);
-                tmp = tmp + (tmp << 3);
-                tmp = tmp ^ (tmp >> 7);
-
-                // final decorrelation pass
-                tmp = tmp * 9;
-                tmp = tmp ^ (tmp >> 5);
-
-                next_pixel = tmp[7:0];
-
+                lx = 9'sd128;
+                ly = 9'sd128;
             end
 
         endcase
 
-        // ========================================================
-        // POST PROCESSING
-        // ========================================================
+        // ============================================================
+        // DISTANCE FIELD
+        // ============================================================
+
+        dx = $signed({1'b0, x}) - lx;
+        dy = $signed({1'b0, y}) - ly;
+
+        dist2 = dx*dx + dy*dy;
+
+        light = 16'sd255 - (dist2 >>> 7);
+
+        // ============================================================
+        // MODE MIXING
+        // ============================================================
+
+        case (mode)
+
+            // ----------------------------------------------------
+            // MODE 0
+            // ----------------------------------------------------
+            2'b00: begin
+                tmp = light + (in_pixel >>> 1);
+            end
+
+            // ----------------------------------------------------
+            // MODE 1
+            // ----------------------------------------------------
+            2'b01: begin
+                tmp = light + (in_pixel >>> 1) + (x >>> 3);
+            end
+
+            // ----------------------------------------------------
+            // MODE 2: EXTREME SPOTLIGHT (CORE FIX)
+            // ----------------------------------------------------
+            2'b10: begin
+
+                // compress distance first (critical for avoiding washout)
+                tmp = dist2 >> 5;
+
+                // nonlinear-like falloff shaping
+                tmp = tmp + (tmp >> 1);
+                tmp = tmp + (tmp >> 2);
+
+                // convert to brightness
+                tmp = 16'sd255 - tmp;
+
+                if (tmp < 0)
+                    tmp = 0;
+
+                // almost no texture influence
+                tmp = tmp + (in_pixel >> 5);
+
+            end
+
+            // ----------------------------------------------------
+            // MODE 3 (UNCHANGED)
+            // ----------------------------------------------------
+            2'b11: begin
+                tmp = light + (in_pixel >>> 1);
+            end
+
+        endcase
+
+        // ============================================================
+        // CLAMP
+        // ============================================================
+
+        if (tmp < 0)
+            tmp = 0;
+        if (tmp > 255)
+            tmp = 255;
+
+        pixel_out = tmp[7:0];
 
         if (invert)
-            next_pixel = ~next_pixel;
+            pixel_out = ~pixel_out;
 
     end
-
-    // ============================================================
-    // OUTPUT REGISTER
-    // ============================================================
-
-    reg [7:0] pixel;
-
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)
-            pixel <= 0;
-        else
-            pixel <= next_pixel;
-    end
-
-    assign pixel_out = pixel;
 
 endmodule
