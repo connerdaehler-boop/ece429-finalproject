@@ -35,80 +35,100 @@ module procedural_graphics_core (
     end
 
     // ============================================================
-    // GPU FEATURE STAGE (important architectural step)
+    // FEATURE LAYER
     // ============================================================
 
     wire [7:0] t = time_ctr[7:0];
 
-    // spatial basis (low frequency space)
     wire [7:0] gx = x >> 2;
     wire [7:0] gy = y >> 2;
 
-    // controlled low-noise field (no grid resonance)
     wire [7:0] noise =
         (x + (y >> 1) + (t >> 3)) ^ ((x >> 1) + y);
 
-    // smooth interaction field (prevents banding)
     wire [7:0] field =
         (x + y) >> 1;
 
     // ============================================================
-    // FRAGMENT SHADER STAGE
+    // SHADER STAGE
     // ============================================================
+
+    reg signed [15:0] dx;
+    reg signed [15:0] dy;
+    reg [15:0] tmp;
 
     reg [7:0] next_pixel;
 
     always @(*) begin
 
+        tmp = 0;
         next_pixel = 0;
 
         case (mode)
 
             // ====================================================
-		// MODE 0 : vertical height lighting (true gradient shader)
-		// ====================================================
-		2'b00: begin
-		    next_pixel =
-			(y >> 1) +              // dominant vertical gradient
-			(y >> 2) +              // soft falloff shaping
-			(x >> 4);               // very weak horizontal texture
-		end
-
-		// ====================================================
-		// MODE 1 : directional / angled lighting (different basis)
-		// ====================================================
-		2'b01: begin
-		    next_pixel =
-			(x >> 1) +              // horizontal dominance (key difference)
-			(y >> 2) +              // weaker vertical component
-			((x + y) >> 3) +       // diagonal lighting bias
-			(t >> 5);              // subtle animation drift
-		end
-
+            // MODE 0 : vertical gradient
             // ====================================================
-            // MODE 2 : interference shader (stable waves, no XOR banding)
-            // ====================================================
-            2'b10: begin
-                next_pixel =
-                    (x + y) +
-                    ((x >> 1) + (y >> 2)) ^
-                    (t >> 3);
+            2'b00: begin
+                tmp = (y >> 1) + (y >> 2) + (x >> 4);
+                next_pixel = tmp[7:0];
             end
 
             // ====================================================
-            // MODE 3 : procedural texture (de-coupled noise material)
+            // MODE 1 : directional lighting
+            // ====================================================
+            2'b01: begin
+                tmp = (x >> 1) + (y >> 2) + ((x + y) >> 3) + (t >> 5);
+                next_pixel = tmp[7:0];
+            end
+
+            // ====================================================
+            // MODE 2 : circular light source (stable)
+            // ====================================================
+            2'b10: begin
+                dx = $signed({1'b0, x}) - 16'sd128;
+                dy = $signed({1'b0, y}) - 16'sd128;
+
+                tmp = dx * dx + dy * dy;
+                tmp = tmp >> 4;
+
+                tmp = 16'd255 - tmp;
+
+                if (tmp[15] || tmp > 255)
+                    tmp = 0;
+
+                next_pixel = tmp[7:0];
+            end
+
+            // ====================================================
+            // MODE 3 : FINAL FIX — isotropic hash noise (NO LINE STRUCTURE)
             // ====================================================
             2'b11: begin
-                next_pixel =
-                    noise +
-                    (gx << 1) +
-                    (gy << 1);
+
+                // fully non-directional spatial hash core
+                tmp =
+                    (x * 17) ^
+                    (y * 23) ^
+                    ((x ^ y) * 29) ^
+                    (t * 11);
+
+                // avalanche mixing (breaks residual correlation)
+                tmp = tmp ^ (tmp >> 4);
+                tmp = tmp + (tmp << 3);
+                tmp = tmp ^ (tmp >> 7);
+
+                // final decorrelation pass
+                tmp = tmp * 9;
+                tmp = tmp ^ (tmp >> 5);
+
+                next_pixel = tmp[7:0];
+
             end
 
         endcase
 
         // ========================================================
-        // POST-PROCESSING STAGE (GPU-like final step)
+        // POST PROCESSING
         // ========================================================
 
         if (invert)
@@ -117,7 +137,7 @@ module procedural_graphics_core (
     end
 
     // ============================================================
-    // OUTPUT PIPELINE REGISTER
+    // OUTPUT REGISTER
     // ============================================================
 
     reg [7:0] pixel;
