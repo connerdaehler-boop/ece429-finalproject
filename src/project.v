@@ -31,8 +31,9 @@ module tt_um_connerdaehler_boop (
         .clk(clk),
         .rst_n(rst_n),
 
-        .in_pixel(8'd0),
-        .in_valid(1'b1),
+        // FIXED:
+        .in_pixel(uio_in),
+        .in_valid(ena),
 
         .mode(mode),
         .freeze(freeze),
@@ -46,17 +47,16 @@ module tt_um_connerdaehler_boop (
     // ============================================================
 
     assign uo_out  = pixel;
+
+    // unused bidirectional outputs
     assign uio_out = 8'b0;
     assign uio_oe  = 8'b0;
 
     // ============================================================
-    // CRITICAL FIX: prevent net trimming / floating VPWR/VGND issues
+    // keep signals alive
     // ============================================================
 
-    wire _keep_1;
-    wire _keep_2;
-
-    assign _keep_1 = ena;
-    assign _keep_2 = |ui_in | |uio_in;
+    wire _unused;
+    assign _unused = &{ena, 1'b0};
 
 endmodule
