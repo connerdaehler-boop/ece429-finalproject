@@ -9,33 +9,31 @@ HEIGHT = 256
 
 
 # ============================================================
-# INPUT IMAGE
+# LOAD INPUT IMAGE (REAL PHOTO → 256x256 grayscale)
 # ============================================================
 
-def generate_test_image():
-    img = np.zeros((HEIGHT, WIDTH), dtype=np.uint8)
+def load_input_image(path="input.png"):
+    img = Image.open(path).convert("L")  # grayscale
+    img = img.resize((WIDTH, HEIGHT), Image.BILINEAR)
+    return np.array(img, dtype=np.uint8)
 
-    # solid background
-    img[:, :] = 40
 
-    for y in range(HEIGHT):
-        for x in range(WIDTH):
+# ============================================================
+# OPTIONAL FALLBACK IMAGE (so test never breaks)
+# ============================================================
 
-            # vertical bright bar
-            if 90 < x < 130:
-                img[y, x] = 180
+def ensure_input_image():
+    try:
+        Image.open("input.png")
+    except:
+        print("input.png not found — generating fallback image")
+        fallback = np.zeros((HEIGHT, WIDTH), dtype=np.uint8)
 
-            # circle
-            dx = x - 160
-            dy = y - 120
-            if dx*dx + dy*dy < 45*45:
-                img[y, x] = 255
+        for y in range(HEIGHT):
+            for x in range(WIDTH):
+                fallback[y, x] = (x + y) % 256
 
-            # small dark hole inside circle
-            if dx*dx + dy*dy < 20*20:
-                img[y, x] = 20
-
-    return img
+        Image.fromarray(fallback).save("input.png")
 
 
 # ============================================================
@@ -50,7 +48,7 @@ def safe(val):
 
 
 # ============================================================
-# SAVE
+# SAVE IMAGE
 # ============================================================
 
 def save(img, name):
@@ -58,7 +56,7 @@ def save(img, name):
 
 
 # ============================================================
-# RUN FRAME
+# RUN FRAME THROUGH DUT
 # ============================================================
 
 async def run_frame(dut, mode, img):
@@ -85,9 +83,15 @@ async def run_frame(dut, mode, img):
 @cocotb.test()
 async def test_pipeline(dut):
 
+    # --------------------------------------------------------
+    # Clock
+    # --------------------------------------------------------
     clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
 
+    # --------------------------------------------------------
+    # Reset
+    # --------------------------------------------------------
     dut.rst_n.value = 0
     dut.ena.value = 1
 
@@ -96,11 +100,18 @@ async def test_pipeline(dut):
     dut.rst_n.value = 1
     await ClockCycles(dut.clk, 2)
 
-    img = generate_test_image()
+    # --------------------------------------------------------
+    # Load real image input
+    # --------------------------------------------------------
+    ensure_input_image()
+    img = load_input_image("input.png")
 
-    # SAVE INPUT IMAGE (important for debugging)
-    save(img, "input.png")
+    # Save normalized input (debug reference)
+    save(img, "input_normalized.png")
 
+    # --------------------------------------------------------
+    # Run DUT in all modes
+    # --------------------------------------------------------
     frame0 = await run_frame(dut, 0b00, img)
     save(frame0, "mode0.png")
 
