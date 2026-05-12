@@ -31,7 +31,6 @@ module tt_um_connerdaehler_boop (
         .clk(clk),
         .rst_n(rst_n),
 
-        // FIXED:
         .in_pixel(uio_in),
         .in_valid(ena),
 
