@@ -124,24 +124,21 @@ module procedural_graphics_core (
             end
 
             // ----------------------------------------------------
-            // MODE 2: EXTREME SPOTLIGHT (CORE FIX)
+            // MODE 2: EXTREME SPOTLIGHT
             // ----------------------------------------------------
             2'b10: begin
 
-                // compress distance first (critical for avoiding washout)
                 tmp = dist2 >> 5;
 
                 // nonlinear-like falloff shaping
                 tmp = tmp + (tmp >> 1);
                 tmp = tmp + (tmp >> 2);
 
-                // convert to brightness
                 tmp = 16'sd255 - tmp;
 
                 if (tmp < 0)
                     tmp = 0;
 
-                // almost no texture influence
                 tmp = tmp + (in_pixel >> 5);
 
             end
