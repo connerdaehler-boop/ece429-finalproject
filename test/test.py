@@ -9,7 +9,7 @@ HEIGHT = 256
 
 
 # ============================================================
-# LOAD INPUT IMAGE (REAL PHOTO → 256x256 grayscale)
+# LOAD INPUT IMAGE (256x256 grayscale)
 # ============================================================
 
 def load_input_image(path="input.png"):
@@ -19,7 +19,7 @@ def load_input_image(path="input.png"):
 
 
 # ============================================================
-# OPTIONAL FALLBACK IMAGE (so test never breaks)
+# OPTIONAL FALLBACK IMAGE (so test doesnt break)
 # ============================================================
 
 def ensure_input_image():
