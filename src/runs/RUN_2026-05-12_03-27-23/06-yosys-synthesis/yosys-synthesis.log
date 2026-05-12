@@ -1,0 +1,1586 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.62 (git sha1 7326bb7d6, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+
+1. Executing Liberty frontend: /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+Imported 428 cell types from liberty file.
+[INFO] Using SDC file '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/synthesis.abc.sdc' for ABC…
+
+2. Executing Verilog-2005 frontend: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v
+Parsing SystemVerilog input from `/foss/designs/ece429-finalproject/src/procedural_graphics_core.v' to AST representation.
+Storing AST representation for module `$abstract\procedural_graphics_core'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /foss/designs/ece429-finalproject/src/project.v
+Parsing SystemVerilog input from `/foss/designs/ece429-finalproject/src/project.v' to AST representation.
+Storing AST representation for module `$abstract\tt_um_connerdaehler_boop'.
+Successfully finished Verilog frontend.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+5. Executing AST frontend in derive mode using pre-parsed AST for module `\tt_um_connerdaehler_boop'.
+Generating RTLIL representation for module `\tt_um_connerdaehler_boop'.
+
+5.1. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+
+5.2. Executing AST frontend in derive mode using pre-parsed AST for module `\procedural_graphics_core'.
+Generating RTLIL representation for module `\procedural_graphics_core'.
+
+5.3. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+Used module:     \procedural_graphics_core
+
+5.4. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+Used module:     \procedural_graphics_core
+Removing unused module `$abstract\tt_um_connerdaehler_boop'.
+Removing unused module `$abstract\procedural_graphics_core'.
+Removed 2 unused modules.
+Renaming module tt_um_connerdaehler_boop to tt_um_connerdaehler_boop.
+
+6. Generating Graphviz representation of design.
+Writing dot description to `/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/hierarchy.dot'.
+Dumping module tt_um_connerdaehler_boop to page 1.
+
+7. Executing TRIBUF pass.
+
+8. Executing HIERARCHY pass (managing design hierarchy).
+
+8.1. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+Used module:     \procedural_graphics_core
+
+8.2. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+Used module:     \procedural_graphics_core
+Removed 0 unused modules.
+
+9. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 2 dead cases from process $proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9 in module procedural_graphics_core.
+Marked 6 switch rules as full_case in process $proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9 in module procedural_graphics_core.
+Marked 2 switch rules as full_case in process $proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2 in module procedural_graphics_core.
+Removed a total of 2 dead cases.
+
+11. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 8 assignments to connections.
+
+12. Executing PROC_INIT pass (extract init attributes).
+
+13. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+
+14. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~8 debug messages>
+
+15. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+     1/7: $1\pixel_out[7:0]
+     2/7: $4\tmp[15:0]
+     3/7: $3\tmp[15:0]
+     4/7: $2\tmp[15:0]
+     5/7: $1\tmp[15:0]
+     6/7: $1\ly[8:0]
+     7/7: $1\lx[8:0]
+Creating decoders for process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+     1/2: $0\x[7:0]
+     2/2: $0\y[7:0]
+
+16. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\procedural_graphics_core.\pixel_out' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dx' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dy' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dist2' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\light' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\tmp' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\lx' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\ly' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+
+17. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\procedural_graphics_core.\y' using process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+  created $adff cell `$procdff$81' with positive edge clock and positive level reset.
+Creating register for signal `\procedural_graphics_core.\x' using process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+  created $adff cell `$procdff$86' with positive edge clock and positive level reset.
+
+18. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+19. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 6 empty switches in `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+Removing empty process `procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+Found and cleaned up 2 empty switches in `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+Removing empty process `procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:23$2'.
+Cleaned up 8 empty switches.
+
+20. Executing CHECK pass (checking for obvious problems).
+Checking module tt_um_connerdaehler_boop...
+Checking module procedural_graphics_core...
+Found and reported 0 problems.
+
+21. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~1 debug messages>
+Optimizing module procedural_graphics_core.
+<suppressed ~16 debug messages>
+
+22. Executing FLATTEN pass (flatten design).
+Deleting now unused module procedural_graphics_core.
+<suppressed ~1 debug messages>
+
+23. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 3 unused cells and 47 unused wires.
+<suppressed ~4 debug messages>
+
+25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 51 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 40 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+28. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+    New ctrl vector for $pmux cell $flatten\graphics_core.$procmux$52: { $flatten\graphics_core.$procmux$55_CMP $flatten\graphics_core.$procmux$51_CMP $auto$opt_reduce.cc:137:opt_pmux$89 }
+    New ctrl vector for $pmux cell $flatten\graphics_core.$procmux$57: { $flatten\graphics_core.$procmux$56_CMP $flatten\graphics_core.$procmux$55_CMP $auto$opt_reduce.cc:137:opt_pmux$91 }
+    New ctrl vector for $pmux cell $flatten\graphics_core.$procmux$62: { $flatten\graphics_core.$procmux$55_CMP $auto$opt_reduce.cc:137:opt_pmux$93 }
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 3 changes.
+
+29. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 43 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+30. Executing OPT_DFF pass (perform DFF optimizations).
+
+31. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 0 unused cells and 11 unused wires.
+<suppressed ~1 debug messages>
+
+32. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+33. Rerunning OPT passes. (Maybe there is more to do…)
+
+34. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+35. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+36. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 43 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+37. Executing OPT_DFF pass (perform DFF optimizations).
+
+38. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+39. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+40. Executing FSM pass (extract and optimize FSM).
+
+40.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+40.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+40.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+40.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+40.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+40.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+40.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+40.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+41. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+42. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 43 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+43. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+44. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+45. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 43 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+46. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $flatten\graphics_core.$procdff$86 ($adff) from module tt_um_connerdaehler_boop (D = $flatten\graphics_core.$procmux$68_Y, Q = \graphics_core.x).
+Adding EN signal on $flatten\graphics_core.$procdff$81 ($adff) from module tt_um_connerdaehler_boop (D = $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7_Y [7:0], Q = \graphics_core.y).
+
+47. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 3 unused cells and 3 unused wires.
+<suppressed ~4 debug messages>
+
+48. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+49. Rerunning OPT passes. (Maybe there is more to do…)
+
+50. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~17 debug messages>
+
+51. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+52. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 41 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+53. Executing OPT_DFF pass (perform DFF optimizations).
+
+54. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+55. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+56. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$procmux$55_CMP0 ($eq).
+Removed top 8 bits (of 16) from mux cell tt_um_connerdaehler_boop.$flatten\graphics_core.$procmux$41 ($mux).
+Removed top 23 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$gt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:164$35 ($gt).
+Removed top 31 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:162$34 ($lt).
+Removed top 13 bits (of 16) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:145$31 ($add).
+Removed top 31 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:141$29 ($lt).
+Removed top 7 bits (of 16) from port A of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:139$28 ($sub).
+Removed top 1 bits (of 16) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:136$27 ($add).
+Removed top 11 bits (of 16) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123$22 ($add).
+Removed top 9 bits (of 16) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:116$18 ($add).
+Removed top 7 bits (of 16) from port A of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 ($sub).
+Removed top 7 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 ($sub).
+Removed top 16 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 ($sub).
+Removed top 9 bits (of 25) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 ($sub).
+Removed top 9 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14 ($add).
+Removed top 9 bits (of 32) from port A of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14 ($add).
+Removed top 9 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14 ($add).
+Removed top 9 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13 ($mul).
+Removed top 9 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12 ($mul).
+Removed top 7 bits (of 16) from port A of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100$11 ($sub).
+Removed top 6 bits (of 16) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100$11 ($sub).
+Removed top 7 bits (of 16) from port A of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99$10 ($sub).
+Removed top 6 bits (of 16) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99$10 ($sub).
+Removed top 31 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:32$8 ($add).
+Removed top 24 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:32$8 ($add).
+Removed top 31 bits (of 32) from port B of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7 ($add).
+Removed top 24 bits (of 32) from port Y of cell tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7 ($add).
+Removed top 24 bits (of 32) from wire tt_um_connerdaehler_boop.$flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7_Y.
+
+57. Executing PEEPOPT pass (run peephole optimizers).
+
+58. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+59. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tt_um_connerdaehler_boop:
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:116$18 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123$22 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:135$25 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:136$27 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:145$31 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7 ($add).
+  creating $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:32$8 ($add).
+  creating $macc model for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12 ($mul).
+  creating $macc model for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13 ($mul).
+  creating $macc model for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100$11 ($sub).
+  creating $macc model for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 ($sub).
+  creating $macc model for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:139$28 ($sub).
+  creating $macc model for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99$10 ($sub).
+  merging $macc model for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:136$27 into $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:139$28.
+  merging $macc model for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104$16 into $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:116$18.
+  merging $macc model for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12 into $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14.
+  merging $macc model for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13 into $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14.
+  creating $alu model for $macc $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99$10.
+  creating $alu model for $macc $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:32$8.
+  creating $alu model for $macc $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7.
+  creating $alu model for $macc $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:145$31.
+  creating $alu model for $macc $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100$11.
+  creating $alu model for $macc $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:135$25.
+  creating $alu model for $macc $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123$22.
+  creating $macc cell for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:139$28: $auto$alumacc.cc:382:replace_macc$99
+  creating $macc cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:116$18: $auto$alumacc.cc:382:replace_macc$100
+  creating $macc cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$14: $auto$alumacc.cc:382:replace_macc$101
+  creating $alu model for $flatten\graphics_core.$gt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:164$35 ($gt): new $alu
+  creating $alu model for $flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:141$29 ($lt): new $alu
+  creating $alu model for $flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:162$34 ($lt): new $alu
+  creating $alu cell for $flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:162$34: $auto$alumacc.cc:512:replace_alu$105
+  creating $alu cell for $flatten\graphics_core.$lt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:141$29: $auto$alumacc.cc:512:replace_alu$112
+  creating $alu cell for $flatten\graphics_core.$gt$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:164$35: $auto$alumacc.cc:512:replace_alu$119
+  creating $alu cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123$22: $auto$alumacc.cc:512:replace_alu$132
+  creating $alu cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:135$25: $auto$alumacc.cc:512:replace_alu$135
+  creating $alu cell for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100$11: $auto$alumacc.cc:512:replace_alu$138
+  creating $alu cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:145$31: $auto$alumacc.cc:512:replace_alu$141
+  creating $alu cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:30$7: $auto$alumacc.cc:512:replace_alu$144
+  creating $alu cell for $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:32$8: $auto$alumacc.cc:512:replace_alu$147
+  creating $alu cell for $flatten\graphics_core.$sub$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99$10: $auto$alumacc.cc:512:replace_alu$150
+  created 10 $alu and 3 $macc cells.
+
+60. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module tt_um_connerdaehler_boop that may be considered for resource sharing.
+  Analyzing resource sharing options for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13 ($mul):
+    Found cell that is never activated: $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13
+    Cell is never active. Sharing is pointless, we simply remove it.
+  Analyzing resource sharing options for $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12 ($mul):
+    Found cell that is never activated: $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12
+    Cell is never active. Sharing is pointless, we simply remove it.
+Removing 2 cells in module tt_um_connerdaehler_boop:
+  Removing cell $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$12 ($mul).
+  Removing cell $flatten\graphics_core.$mul$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:102$13 ($mul).
+
+61. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~7 debug messages>
+
+62. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 46 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+63. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~17 debug messages>
+
+64. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+65. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 46 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+66. Executing OPT_DFF pass (perform DFF optimizations).
+
+67. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 5 unused cells and 20 unused wires.
+<suppressed ~9 debug messages>
+
+68. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+69. Rerunning OPT passes. (Maybe there is more to do…)
+
+70. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $flatten\graphics_core.$procmux$44: $auto$alumacc.cc:448:extract_cmp_alu$104 -> { 1'0 $auto$alumacc.cc:448:extract_cmp_alu$104 [14:0] }
+      Replacing known input bits on port A of cell $flatten\graphics_core.$procmux$48: $auto$alumacc.cc:448:extract_cmp_alu$103 -> { 1'0 $auto$alumacc.cc:448:extract_cmp_alu$103 [14:0] }
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~17 debug messages>
+
+71. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+72. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 39 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+73. Executing OPT_DFF pass (perform DFF optimizations).
+
+74. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+75. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+76. Executing MEMORY pass.
+
+76.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+76.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+76.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+76.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+76.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+76.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+76.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+76.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+76.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+76.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+77. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+78. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~9 debug messages>
+
+79. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 38 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+80. Executing OPT_DFF pass (perform DFF optimizations).
+
+81. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+82. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+83. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+84. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 38 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+85. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~16 debug messages>
+
+86. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+    Consolidated identical input bits for $mux cell $flatten\graphics_core.$procmux$44:
+      Old ports: A={ 1'0 $auto$alumacc.cc:448:extract_cmp_alu$104 [14:0] }, B=16'0000000000000000, Y=$flatten\graphics_core.$3\tmp[15:0]
+      New ports: A=$auto$alumacc.cc:448:extract_cmp_alu$104 [14:0], B=15'000000000000000, Y=$flatten\graphics_core.$3\tmp[15:0] [14:0]
+      New connections: $flatten\graphics_core.$3\tmp[15:0] [15] = 1'0
+    Consolidated identical input bits for $mux cell $flatten\graphics_core.$procmux$48:
+      Old ports: A={ 1'0 $auto$alumacc.cc:448:extract_cmp_alu$103 [14:0] }, B=16'0000000000000000, Y=$flatten\graphics_core.$2\tmp[15:0]
+      New ports: A=$auto$alumacc.cc:448:extract_cmp_alu$103 [14:0], B=15'000000000000000, Y=$flatten\graphics_core.$2\tmp[15:0] [14:0]
+      New connections: $flatten\graphics_core.$2\tmp[15:0] [15] = 1'0
+    Consolidated identical input bits for $pmux cell $flatten\graphics_core.$procmux$57:
+      Old ports: A=9'000000000, B=18'011011100010000000, Y=\graphics_core.ly
+      New ports: A=2'00, B=4'1110, Y={ \graphics_core.ly [7] \graphics_core.ly [2] }
+      New connections: { \graphics_core.ly [8] \graphics_core.ly [6:3] \graphics_core.ly [1:0] } = { 1'0 \graphics_core.ly [2] 1'0 \graphics_core.ly [2] \graphics_core.ly [2] 2'00 }
+    Consolidated identical input bits for $mux cell $flatten\graphics_core.$procmux$62:
+      Old ports: A=9'011011100, B=9'010000000, Y=\graphics_core.lx
+      New ports: A=1'1, B=1'0, Y=\graphics_core.lx [2]
+      New connections: { \graphics_core.lx [8:3] \graphics_core.lx [1:0] } = { 2'01 \graphics_core.lx [2] 1'0 \graphics_core.lx [2] \graphics_core.lx [2] 2'00 }
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 4 changes.
+
+87. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 38 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+88. Executing OPT_SHARE pass.
+
+89. Executing OPT_DFF pass (perform DFF optimizations).
+
+90. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+91. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~3 debug messages>
+
+92. Rerunning OPT passes. (Maybe there is more to do…)
+
+93. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+94. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+95. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 42 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+96. Executing OPT_SHARE pass.
+
+97. Executing OPT_DFF pass (perform DFF optimizations).
+
+98. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 4 unused cells and 4 unused wires.
+<suppressed ~5 debug messages>
+
+99. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+100. Rerunning OPT passes. (Maybe there is more to do…)
+
+101. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+102. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+103. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 38 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+104. Executing OPT_SHARE pass.
+
+105. Executing OPT_DFF pass (perform DFF optimizations).
+
+106. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+107. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+108. Executing TECHMAP pass (map to technology primitives).
+
+108.1. Executing Verilog-2005 frontend: /foss/tools/yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/foss/tools/yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+108.2. Continuing TECHMAP pass.
+Using template $paramod$2ab573529e9e52125e975201e39a54c8a2a98782\_90_alu for cells of type $alu.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_90_alu for cells of type $alu.
+Using template $paramod$a460ba4831a5c553df03ee15bf45a690343e194f\_90_alu for cells of type $alu.
+Using template $paramod$521ce43182eecb9f60c72393a788160d2c356bf5\_90_pmux for cells of type $pmux.
+Using template $paramod$d4c0c20b0ee59f495e14575c4397dc0a6dd9e8e6\_90_alu for cells of type $alu.
+Using template $paramod$5168aae49e4c2f5be022b435d3f3df25f30776ec\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$81012c15a0c60b988a59bf2fc9e64f23a56c99fb\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add { \graphics_core.dx [15] \graphics_core.dx [8:2] \graphics_core.x [1:0] } * { \graphics_core.dx [15] \graphics_core.dx [8:2] \graphics_core.x [1:0] } (10x10 bits, signed)
+  add { \graphics_core.dy [15] \graphics_core.dy [8:2] \graphics_core.y [1:0] } * { \graphics_core.dy [15] \graphics_core.dy [8:2] \graphics_core.y [1:0] } (10x10 bits, signed)
+  add \uio_in [7:1] (7 bits, unsigned)
+  sub \graphics_core.dist2 [22:7] (16 bits, signed)
+  add 16'0000000011111111 (16 bits, unsigned)
+  sub $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:135$25_Y (16 bits, signed)
+  sub { 1'0 $flatten\graphics_core.$add$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:135$25_Y [15:2] } (15 bits, signed)
+  add 16'0000000011111111 (16 bits, unsigned)
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010111 for cells of type $fa.
+Using template $paramod$448756c9a9dfaa49080ce4b90c6cc182883e181f\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010111 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1598 debug messages>
+
+109. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~1864 debug messages>
+
+110. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 3122 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2824 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2681 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2567 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2510 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2476 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2444 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2423 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2402 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2382 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2369 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2362 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2356 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2352 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2351 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+<suppressed ~2313 debug messages>
+Removed a total of 771 cells.
+
+111. Executing OPT_DFF pass (perform DFF optimizations).
+
+112. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 159 unused cells and 972 unused wires.
+<suppressed ~160 debug messages>
+
+113. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~42 debug messages>
+
+114. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 2150 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+115. Executing OPT_DFF pass (perform DFF optimizations).
+
+116. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 6 unused cells and 7 unused wires.
+<suppressed ~7 debug messages>
+
+117. Executing ABC pass (technology mapping using ABC).
+
+117.1. Extracting gate netlist of module `\tt_um_connerdaehler_boop' to `<abc-temp-dir>/input.blif'..
+
+117.1.1. Executed ABC.
+Extracted 2127 gates and 2157 wires to a netlist network with 28 inputs and 26 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Feb 14 2026 00:59:35)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-2Uqo3L/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+ABC: YOSYS_ABC_DONE 
+
+117.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       25
+ABC RESULTS:            ANDNOT cells:      740
+ABC RESULTS:               MUX cells:       20
+ABC RESULTS:              NAND cells:       41
+ABC RESULTS:               NOR cells:      133
+ABC RESULTS:               NOT cells:       93
+ABC RESULTS:                OR cells:      242
+ABC RESULTS:             ORNOT cells:      117
+ABC RESULTS:              XNOR cells:      198
+ABC RESULTS:               XOR cells:      466
+ABC RESULTS:        internal signals:     2103
+ABC RESULTS:           input signals:       28
+ABC RESULTS:          output signals:       26
+Removing temp directory.
+Removing global temp directory.
+
+118. Executing OPT pass (performing simple optimizations).
+
+118.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+<suppressed ~1 debug messages>
+
+118.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 2092 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2082 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Computing hashes of 2081 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+118.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+118.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 0 unused cells and 479 unused wires.
+<suppressed ~1 debug messages>
+
+118.5. Finished fast OPT passes.
+
+119. Executing HIERARCHY pass (managing design hierarchy).
+
+119.1. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+
+119.2. Analyzing design hierarchy..
+Top module:  \tt_um_connerdaehler_boop
+Removed 0 unused modules.
+
+120. Executing CHECK pass (checking for obvious problems).
+Checking module tt_um_connerdaehler_boop...
+Found and reported 0 problems.
+
+121. Printing statistics.
+
+=== tt_um_connerdaehler_boop ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2079 wires
+     2257 wire bits
+       29 public wires
+      193 public wire bits
+        8 ports
+       43 port bits
+     2081 cells
+      738   $_ANDNOT_
+       25   $_AND_
+       16   $_DFFE_PN0P_
+       20   $_MUX_
+       41   $_NAND_
+      131   $_NOR_
+       93   $_NOT_
+      116   $_ORNOT_
+      238   $_OR_
+      197   $_XNOR_
+      465   $_XOR_
+        1   $scopeinfo
+
+122. Generating Graphviz representation of design.
+Writing dot description to `/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/primitive_techmap.dot'.
+Dumping module tt_um_connerdaehler_boop to page 1.
+
+123. Executing OPT pass (performing simple optimizations).
+
+123.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+123.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 2081 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+123.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tt_um_connerdaehler_boop..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+123.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tt_um_connerdaehler_boop.
+Performed a total of 0 changes.
+
+123.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tt_um_connerdaehler_boop'.
+Computing hashes of 2081 cells of `\tt_um_connerdaehler_boop'.
+Finding duplicate cells in `\tt_um_connerdaehler_boop'.
+Removed a total of 0 cells.
+
+123.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+123.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+
+123.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tt_um_connerdaehler_boop.
+
+123.9. Finished fast OPT passes. (There is nothing left to do.)
+
+124. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 1 unused cells and 17 unused wires.
+<suppressed ~18 debug messages>
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/tmp/dfe6c8b01c9649fc95d6bf5d8251dab1.lib ",
+   "modules": {
+      "\\tt_um_connerdaehler_boop": {
+         "num_wires":         2062,
+         "num_wire_bits":     2155,
+         "num_pub_wires":     12,
+         "num_pub_wire_bits": 91,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2080,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 738,
+            "$_AND_": 25,
+            "$_DFFE_PN0P_": 16,
+            "$_MUX_": 20,
+            "$_NAND_": 41,
+            "$_NOR_": 131,
+            "$_NOT_": 93,
+            "$_ORNOT_": 116,
+            "$_OR_": 238,
+            "$_XNOR_": 197,
+            "$_XOR_": 465
+         }
+      }
+   },
+      "design": {
+         "num_wires":         2062,
+         "num_wire_bits":     2155,
+         "num_pub_wires":     12,
+         "num_pub_wire_bits": 91,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2080,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 738,
+            "$_AND_": 25,
+            "$_DFFE_PN0P_": 16,
+            "$_MUX_": 20,
+            "$_NAND_": 41,
+            "$_NOR_": 131,
+            "$_NOT_": 93,
+            "$_ORNOT_": 116,
+            "$_OR_": 238,
+            "$_XNOR_": 197,
+            "$_XOR_": 465
+         }
+      }
+}
+
+125. Printing statistics.
+
+=== tt_um_connerdaehler_boop ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2062 wires
+     2155 wire bits
+       12 public wires
+       91 public wire bits
+        8 ports
+       43 port bits
+     2080 cells
+      738   $_ANDNOT_
+       25   $_AND_
+       16   $_DFFE_PN0P_
+       20   $_MUX_
+       41   $_NAND_
+      131   $_NOR_
+       93   $_NOT_
+      116   $_ORNOT_
+      238   $_OR_
+      197   $_XNOR_
+      465   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFFE_PN0P_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+[INFO] Applying tri-state buffer mapping from '/foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v'…
+
+126. Executing TECHMAP pass (map to technology primitives).
+
+126.1. Executing Verilog-2005 frontend: /foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `$_TBUF_'.
+Successfully finished Verilog frontend.
+
+126.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+127. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+[INFO] Applying latch mapping from '/foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v'…
+
+128. Executing TECHMAP pass (map to technology primitives).
+
+128.1. Executing Verilog-2005 frontend: /foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/foss/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `$_DLATCH_P_'.
+Generating RTLIL representation for module `$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+128.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+129. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+130. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+130.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\tt_um_connerdaehler_boop':
+  mapped 16 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/tmp/dfe6c8b01c9649fc95d6bf5d8251dab1.lib ",
+   "modules": {
+      "\\tt_um_connerdaehler_boop": {
+         "num_wires":         2078,
+         "num_wire_bits":     2171,
+         "num_pub_wires":     12,
+         "num_pub_wire_bits": 91,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2096,
+         "num_submodules":       0,
+         "area":              420.403200,
+         "sequential_area":    420.403200,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 738,
+            "$_AND_": 25,
+            "$_MUX_": 36,
+            "$_NAND_": 41,
+            "$_NOR_": 131,
+            "$_NOT_": 93,
+            "$_ORNOT_": 116,
+            "$_OR_": 238,
+            "$_XNOR_": 197,
+            "$_XOR_": 465,
+            "sky130_fd_sc_hd__dfrtp_2": 16
+         }
+      }
+   },
+      "design": {
+         "num_wires":         2078,
+         "num_wire_bits":     2171,
+         "num_pub_wires":     12,
+         "num_pub_wire_bits": 91,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2096,
+         "num_submodules":       0,
+         "area":              420.403200,
+         "sequential_area":    420.403200,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 738,
+            "$_AND_": 25,
+            "$_MUX_": 36,
+            "$_NAND_": 41,
+            "$_NOR_": 131,
+            "$_NOT_": 93,
+            "$_ORNOT_": 116,
+            "$_OR_": 238,
+            "$_XNOR_": 197,
+            "$_XOR_": 465,
+            "sky130_fd_sc_hd__dfrtp_2": 16
+         }
+      }
+}
+
+131. Printing statistics.
+
+=== tt_um_connerdaehler_boop ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2078        - wires
+     2171        - wire bits
+       12        - public wires
+       91        - public wire bits
+        8        - ports
+       43        - port bits
+     2096  420.403 cells
+      738        -   $_ANDNOT_
+       25        -   $_AND_
+       36        -   $_MUX_
+       41        -   $_NAND_
+      131        -   $_NOR_
+       93        -   $_NOT_
+      116        -   $_ORNOT_
+      238        -   $_OR_
+      197        -   $_XNOR_
+      465        -   $_XOR_
+       16  420.403   sky130_fd_sc_hd__dfrtp_2
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+   Chip area for module '\tt_um_connerdaehler_boop': 420.403200
+     of which used for sequential elements: 420.403200 (100.00%)
+
+[INFO] Using generated ABC script '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/AREA_0.abc'…
+
+132. Executing ABC pass (technology mapping using ABC).
+
+132.1. Extracting gate netlist of module `\tt_um_connerdaehler_boop' to `/tmp/yosys-abc-5Zeak2/input.blif'..
+
+132.1.1. Executed ABC.
+Extracted 2080 gates and 2108 wires to a netlist network with 28 inputs and 24 outputs.
+Running ABC script: /tmp/yosys-abc-5Zeak2/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Feb 14 2026 00:59:35)
+ABC: abc 01> empty
+ABC: abc 01> source /tmp/yosys-abc-5Zeak2/abc.script
+ABC: + read_blif /tmp/yosys-abc-5Zeak2/input.blif 
+ABC: + read_lib -w /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/tmp/dfe6c8b01c9649fc95d6bf5d8251dab1.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.02 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/tmp/dfe6c8b01c9649fc95d6bf5d8251dab1.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.03 sec
+ABC: Memory =    9.54 MB. Time =     0.03 sec
+ABC: Warning: Detected 2 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/synthesis.abc.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2/Y".
+ABC: Setting output load to be 33.442001.
+ABC: + source /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/06-yosys-synthesis/AREA_0.abc 
+ABC: Error: The network is combinational.
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: WireLoad = "none"  Gates =   1385 (  2.3 %)   Cap = 10.1 ff (  2.1 %)   Area =    13563.01 ( 93.6 %)   Delay = 13318.60 ps  (  9.6 %)               
+ABC: Path  0 --      21 : 0   12 pi                        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  25.2 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --      63 : 2   29 sky130_fd_sc_hd__nand2b_2 A =   8.76  Df = 468.7  -41.9 ps  S = 580.7 ps  Cin =  3.0 ff  Cout = 108.4 ff  Cmax = 285.7 ff  G = 3486  
+ABC: Path  2 --      75 : 3    5 sky130_fd_sc_hd__or3_2    A =   7.51  Df =1052.2 -314.3 ps  S = 119.1 ps  Cin =  1.5 ff  Cout =  15.6 ff  Cmax = 310.4 ff  G =  995  
+ABC: Path  3 --     757 : 3    5 sky130_fd_sc_hd__a21bo_2  A =  10.01  Df =1306.8 -306.0 ps  S = 107.1 ps  Cin =  2.0 ff  Cout =  17.6 ff  Cmax = 288.4 ff  G =  823  
+ABC: Path  4 --     825 : 4    2 sky130_fd_sc_hd__or4bb_2  A =  12.51  Df =1934.6 -590.1 ps  S = 111.0 ps  Cin =  1.5 ff  Cout =   7.2 ff  Cmax = 312.2 ff  G =  458  
+ABC: Path  5 --     827 : 3    2 sky130_fd_sc_hd__a21bo_2  A =  10.01  Df =2179.5 -640.1 ps  S =  54.4 ps  Cin =  2.0 ff  Cout =   7.1 ff  Cmax = 288.4 ff  G =  335  
+ABC: Path  6 --     878 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =2396.3 -198.9 ps  S =  50.5 ps  Cin =  2.4 ff  Cout =   7.1 ff  Cmax = 309.5 ff  G =  289  
+ABC: Path  7 --     880 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =2612.9 -174.6 ps  S =  49.9 ps  Cin =  2.4 ff  Cout =   7.0 ff  Cmax = 309.5 ff  G =  288  
+ABC: Path  8 --     934 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =2828.0 -204.5 ps  S =  48.2 ps  Cin =  2.4 ff  Cout =   6.6 ff  Cmax = 309.5 ff  G =  270  
+ABC: Path  9 --     935 : 3    3 sky130_fd_sc_hd__and3_2   A =   7.51  Df =3057.0 -146.3 ps  S =  84.0 ps  Cin =  1.5 ff  Cout =  11.6 ff  Cmax = 309.5 ff  G =  748  
+ABC: Path 10 --     975 : 3    2 sky130_fd_sc_hd__o21a_2   A =   8.76  Df =3276.9 -148.6 ps  S =  53.6 ps  Cin =  2.4 ff  Cout =   7.1 ff  Cmax = 294.8 ff  G =  279  
+ABC: Path 11 --     977 : 4    2 sky130_fd_sc_hd__o211a_2  A =  10.01  Df =3556.0  -34.6 ps  S =  66.8 ps  Cin =  2.4 ff  Cout =   7.2 ff  Cmax = 268.3 ff  G =  283  
+ABC: Path 12 --     978 : 4    3 sky130_fd_sc_hd__a211o_2  A =  10.01  Df =3817.6 -117.9 ps  S =  71.4 ps  Cin =  2.4 ff  Cout =  11.7 ff  Cmax = 325.0 ff  G =  480  
+ABC: Path 13 --    1000 : 4    3 sky130_fd_sc_hd__o211a_2  A =  10.01  Df =3954.7  -53.2 ps  S =  72.6 ps  Cin =  2.4 ff  Cout =   8.2 ff  Cmax = 268.3 ff  G =  331  
+ABC: Path 14 --    1002 : 3    2 sky130_fd_sc_hd__or3_2    A =   7.51  Df =4416.8 -223.9 ps  S =  88.7 ps  Cin =  1.5 ff  Cout =   6.3 ff  Cmax = 310.4 ff  G =  395  
+ABC: Path 15 --    1008 : 2    2 sky130_fd_sc_hd__and2_2   A =   7.51  Df =4622.1 -271.5 ps  S =  74.1 ps  Cin =  1.5 ff  Cout =  10.7 ff  Cmax = 303.0 ff  G =  704  
+ABC: Path 16 --    1019 : 2    1 sky130_fd_sc_hd__and2b_2  A =   8.76  Df =4807.4 -321.5 ps  S =  34.6 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax = 310.4 ff  G =  150  
+ABC: Path 17 --    1037 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =5012.1   -2.5 ps  S =  68.3 ps  Cin =  2.4 ff  Cout =  10.9 ff  Cmax = 309.5 ff  G =  445  
+ABC: Path 18 --    1038 : 3    3 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =5250.0  -77.2 ps  S =  82.4 ps  Cin =  2.4 ff  Cout =  13.9 ff  Cmax = 309.5 ff  G =  569  
+ABC: Path 19 --    1042 : 4    3 sky130_fd_sc_hd__a211o_2  A =  10.01  Df =5564.7 -243.8 ps  S =  64.2 ps  Cin =  2.4 ff  Cout =   9.2 ff  Cmax = 325.0 ff  G =  371  
+ABC: Path 20 --    1043 : 3    2 sky130_fd_sc_hd__and3_2   A =   7.51  Df =5778.2 -140.8 ps  S =  50.3 ps  Cin =  1.5 ff  Cout =   4.1 ff  Cmax = 309.5 ff  G =  258  
+ABC: Path 21 --    1045 : 5    4 sky130_fd_sc_hd__o311a_2  A =  11.26  Df =6121.1 -315.9 ps  S =  68.2 ps  Cin =  2.4 ff  Cout =   8.0 ff  Cmax = 293.9 ff  G =  321  
+ABC: Path 22 --    1055 : 2    1 sky130_fd_sc_hd__or2_2    A =   6.26  Df =6421.6 -492.9 ps  S =  71.7 ps  Cin =  1.5 ff  Cout =   8.4 ff  Cmax = 299.4 ff  G =  569  
+ABC: Path 23 --    1056 : 2    7 sky130_fd_sc_hd__xnor2_2  A =  16.27  Df =6773.5 -637.9 ps  S = 422.3 ps  Cin =  8.5 ff  Cout =  30.7 ff  Cmax = 121.8 ff  G =  350  
+ABC: Path 24 --    1149 : 2    3 sky130_fd_sc_hd__nand2_2  A =   6.26  Df =6880.1 -260.9 ps  S = 104.7 ps  Cin =  4.4 ff  Cout =   8.6 ff  Cmax = 295.7 ff  G =  188  
+ABC: Path 25 --    1211 : 2    1 sky130_fd_sc_hd__and2b_2  A =   8.76  Df =7119.7   -8.3 ps  S =  61.1 ps  Cin =  1.6 ff  Cout =   8.4 ff  Cmax = 310.4 ff  G =  521  
+ABC: Path 26 --    1212 : 2    5 sky130_fd_sc_hd__xnor2_2  A =  16.27  Df =7390.4  -83.7 ps  S = 332.3 ps  Cin =  8.5 ff  Cout =  22.9 ff  Cmax = 121.8 ff  G =  262  
+ABC: Path 27 --    1228 : 2    2 sky130_fd_sc_hd__xnor2_2  A =  16.27  Df =7661.5 -101.4 ps  S = 220.8 ps  Cin =  8.5 ff  Cout =  13.2 ff  Cmax = 121.8 ff  G =  148  
+ABC: Path 28 --    1256 : 2    2 sky130_fd_sc_hd__xor2_2   A =  16.27  Df =7839.9  -40.3 ps  S = 180.7 ps  Cin =  8.6 ff  Cout =  10.9 ff  Cmax = 130.0 ff  G =  123  
+ABC: Path 29 --    1257 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =8079.1  -98.7 ps  S =  67.9 ps  Cin =  2.4 ff  Cout =  10.9 ff  Cmax = 309.5 ff  G =  449  
+ABC: Path 30 --    1258 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =8312.9 -180.6 ps  S =  70.1 ps  Cin =  2.4 ff  Cout =  11.5 ff  Cmax = 309.5 ff  G =  469  
+ABC: Path 31 --    1261 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =8525.0 -200.9 ps  S =  71.6 ps  Cin =  2.4 ff  Cout =  11.8 ff  Cmax = 309.5 ff  G =  482  
+ABC: Path 32 --    1264 : 3    2 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =8734.1 -264.2 ps  S =  66.7 ps  Cin =  2.4 ff  Cout =  10.7 ff  Cmax = 309.5 ff  G =  437  
+ABC: Path 33 --    1265 : 2    2 sky130_fd_sc_hd__and2b_2  A =   8.76  Df =8935.3 -310.9 ps  S =  55.9 ps  Cin =  1.6 ff  Cout =   7.3 ff  Cmax = 310.4 ff  G =  426  
+ABC: Path 34 --    1266 : 3    5 sky130_fd_sc_hd__o21a_2   A =   8.76  Df =9156.4 -376.7 ps  S =  91.7 ps  Cin =  2.4 ff  Cout =  15.1 ff  Cmax = 294.8 ff  G =  593  
+ABC: Path 35 --    1270 : 5    4 sky130_fd_sc_hd__o311ai_2 A =  16.27  Df =9533.4 -608.1 ps  S = 379.5 ps  Cin =  4.4 ff  Cout =  13.7 ff  Cmax =  82.4 ff  G =  296  
+ABC: Path 36 --    1272 : 4    2 sky130_fd_sc_hd__a31o_2   A =   8.76  Df =9755.8 -565.5 ps  S =  48.5 ps  Cin =  2.4 ff  Cout =   4.0 ff  Cmax = 271.9 ff  G =  162  
+ABC: Path 37 --    1274 : 3   16 sky130_fd_sc_hd__a21o_2   A =   8.76  Df =10042.8 -124.3 ps  S = 266.9 ps  Cin =  2.4 ff  Cout =  52.9 ff  Cmax = 309.5 ff  G = 2142  
+ABC: Path 38 --    1291 : 3    3 sky130_fd_sc_hd__o21ba_2  A =  10.01  Df =10260.0  -55.5 ps  S =  66.6 ps  Cin =  2.1 ff  Cout =   8.6 ff  Cmax = 264.6 ff  G =  398  
+ABC: Path 39 --    1295 : 4    3 sky130_fd_sc_hd__a31o_2   A =   8.76  Df =10514.2 -123.9 ps  S =  84.2 ps  Cin =  2.4 ff  Cout =  11.6 ff  Cmax = 271.9 ff  G =  476  
+ABC: Path 40 --    1297 : 3    3 sky130_fd_sc_hd__a21oi_2  A =   8.76  Df =10665.4  -81.9 ps  S = 132.5 ps  Cin =  4.6 ff  Cout =   7.7 ff  Cmax = 128.2 ff  G =  160  
+ABC: Path 41 --    1309 : 4    6 sky130_fd_sc_hd__and4bb_2 A =  12.51  Df =10979.8   -0.3 ps  S = 171.5 ps  Cin =  1.5 ff  Cout =  25.6 ff  Cmax = 270.1 ff  G = 1631  
+ABC: Path 42 --    1316 : 4    2 sky130_fd_sc_hd__and4_2   A =  10.01  Df =11222.8   -4.7 ps  S =  58.8 ps  Cin =  1.5 ff  Cout =   4.1 ff  Cmax = 300.3 ff  G =  257  
+ABC: Path 43 --    1324 : 4    1 sky130_fd_sc_hd__o31a_2   A =  10.01  Df =11528.1 -176.7 ps  S =  49.2 ps  Cin =  2.3 ff  Cout =   2.6 ff  Cmax = 285.7 ff  G =  104  
+ABC: Path 44 --    1335 : 5    1 sky130_fd_sc_hd__a2111o_2 A =  12.51  Df =11907.9 -475.8 ps  S =  54.5 ps  Cin =  2.4 ff  Cout =   1.5 ff  Cmax = 324.1 ff  G =   60  
+ABC: Path 45 --    1348 : 4    8 sky130_fd_sc_hd__or4b_2   A =  10.01  Df =12696.9 -533.8 ps  S = 184.9 ps  Cin =  1.5 ff  Cout =  29.1 ff  Cmax = 265.5 ff  G = 1885  
+ABC: Path 46 --    1392 : 4    1 sky130_fd_sc_hd__o31a_2   A =  10.01  Df =13104.5 -752.3 ps  S =  65.4 ps  Cin =  2.3 ff  Cout =   8.5 ff  Cmax = 285.7 ff  G =  347  
+ABC: Path 47 --    1393 : 2    1 sky130_fd_sc_hd__xor2_2   A =  16.27  Df =13318.6 -601.0 ps  S = 428.9 ps  Cin =  8.6 ff  Cout =  33.4 ff  Cmax = 130.0 ff  G =  390  
+ABC: Start-point = pi20 (\ui_in [1]).  End-point = po6 (\uo_out [6]).
+ABC: netlist                       : i/o =   28/   24  lat =    0  nd =  1385  edge =   3417  area =13566.53  delay =47.00  lev = 47
+ABC: + write_blif /tmp/yosys-abc-5Zeak2/output.blif 
+ABC:                                                                                
+ABC: YOSYS_ABC_DONE 
+
+132.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a211o_2 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_2 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__a21bo_2 cells:       21
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:       56
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:       64
+ABC RESULTS:   sky130_fd_sc_hd__a221o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a22o_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2o_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a311oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:       15
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a32o_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       70
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:       52
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:       43
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__and4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and4b_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and4bb_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:       32
+ABC RESULTS:   sky130_fd_sc_hd__mux2_1 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:      113
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_2 cells:       45
+ABC RESULTS:   sky130_fd_sc_hd__nand3_2 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:      151
+ABC RESULTS:   sky130_fd_sc_hd__nor3_2 cells:       29
+ABC RESULTS:   sky130_fd_sc_hd__o2111a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:       22
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o21a_2 cells:       42
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_2 cells:       45
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2a_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o311a_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o31a_2 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o32a_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:       92
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:       36
+ABC RESULTS:   sky130_fd_sc_hd__or3b_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__or4b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4bb_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:      213
+ABC RESULTS:   sky130_fd_sc_hd__xor2_2 cells:       85
+ABC RESULTS:        internal signals:     2056
+ABC RESULTS:           input signals:       28
+ABC RESULTS:          output signals:       24
+Removing temp directory.
+Removing global temp directory.
+
+133. Executing SETUNDEF pass (replace undef values with defined constants).
+
+134. Executing HILOMAP pass (mapping to constant drivers).
+
+135. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+136. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tt_um_connerdaehler_boop..
+Removed 0 unused cells and 2164 unused wires.
+<suppressed ~33 debug messages>
+
+137. Executing INSBUF pass (insert buffer cells for connected wires).
+
+138. Executing CHECK pass (checking for obvious problems).
+Checking module tt_um_connerdaehler_boop...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/tmp/dfe6c8b01c9649fc95d6bf5d8251dab1.lib ",
+   "modules": {
+      "\\tt_um_connerdaehler_boop": {
+         "num_wires":         1401,
+         "num_wire_bits":     1436,
+         "num_pub_wires":     24,
+         "num_pub_wire_bits": 59,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1417,
+         "num_submodules":       0,
+         "area":              14043.468800,
+         "sequential_area":    420.403200,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 1,
+            "sky130_fd_sc_hd__a211o_2": 8,
+            "sky130_fd_sc_hd__a211oi_2": 14,
+            "sky130_fd_sc_hd__a21bo_2": 21,
+            "sky130_fd_sc_hd__a21boi_2": 6,
+            "sky130_fd_sc_hd__a21o_2": 56,
+            "sky130_fd_sc_hd__a21oi_2": 64,
+            "sky130_fd_sc_hd__a221o_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 6,
+            "sky130_fd_sc_hd__a22oi_2": 1,
+            "sky130_fd_sc_hd__a2bb2o_2": 4,
+            "sky130_fd_sc_hd__a311oi_2": 1,
+            "sky130_fd_sc_hd__a31o_2": 15,
+            "sky130_fd_sc_hd__a31oi_2": 3,
+            "sky130_fd_sc_hd__a32o_2": 2,
+            "sky130_fd_sc_hd__and2_2": 70,
+            "sky130_fd_sc_hd__and2b_2": 52,
+            "sky130_fd_sc_hd__and3_2": 43,
+            "sky130_fd_sc_hd__and3b_2": 5,
+            "sky130_fd_sc_hd__and4_2": 1,
+            "sky130_fd_sc_hd__and4b_2": 2,
+            "sky130_fd_sc_hd__and4bb_2": 1,
+            "sky130_fd_sc_hd__conb_1": 16,
+            "sky130_fd_sc_hd__dfrtp_2": 16,
+            "sky130_fd_sc_hd__inv_2": 32,
+            "sky130_fd_sc_hd__mux2_1": 12,
+            "sky130_fd_sc_hd__nand2_2": 113,
+            "sky130_fd_sc_hd__nand2b_2": 45,
+            "sky130_fd_sc_hd__nand3_2": 13,
+            "sky130_fd_sc_hd__nand3b_2": 1,
+            "sky130_fd_sc_hd__nand4_2": 1,
+            "sky130_fd_sc_hd__nor2_2": 151,
+            "sky130_fd_sc_hd__nor3_2": 29,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o211a_2": 22,
+            "sky130_fd_sc_hd__o211ai_2": 3,
+            "sky130_fd_sc_hd__o21a_2": 42,
+            "sky130_fd_sc_hd__o21ai_2": 45,
+            "sky130_fd_sc_hd__o21ba_2": 11,
+            "sky130_fd_sc_hd__o21bai_2": 9,
+            "sky130_fd_sc_hd__o221a_2": 1,
+            "sky130_fd_sc_hd__o22a_2": 7,
+            "sky130_fd_sc_hd__o2bb2a_2": 5,
+            "sky130_fd_sc_hd__o2bb2ai_2": 1,
+            "sky130_fd_sc_hd__o311a_2": 4,
+            "sky130_fd_sc_hd__o311ai_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 10,
+            "sky130_fd_sc_hd__o31ai_2": 3,
+            "sky130_fd_sc_hd__o32a_2": 3,
+            "sky130_fd_sc_hd__o32ai_2": 1,
+            "sky130_fd_sc_hd__or2_2": 92,
+            "sky130_fd_sc_hd__or3_2": 36,
+            "sky130_fd_sc_hd__or3b_2": 9,
+            "sky130_fd_sc_hd__or4_2": 4,
+            "sky130_fd_sc_hd__or4b_2": 1,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 213,
+            "sky130_fd_sc_hd__xor2_2": 85
+         }
+      }
+   },
+      "design": {
+         "num_wires":         1401,
+         "num_wire_bits":     1436,
+         "num_pub_wires":     24,
+         "num_pub_wire_bits": 59,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1417,
+         "num_submodules":       0,
+         "area":              14043.468800,
+         "sequential_area":    420.403200,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 1,
+            "sky130_fd_sc_hd__a211o_2": 8,
+            "sky130_fd_sc_hd__a211oi_2": 14,
+            "sky130_fd_sc_hd__a21bo_2": 21,
+            "sky130_fd_sc_hd__a21boi_2": 6,
+            "sky130_fd_sc_hd__a21o_2": 56,
+            "sky130_fd_sc_hd__a21oi_2": 64,
+            "sky130_fd_sc_hd__a221o_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 6,
+            "sky130_fd_sc_hd__a22oi_2": 1,
+            "sky130_fd_sc_hd__a2bb2o_2": 4,
+            "sky130_fd_sc_hd__a311oi_2": 1,
+            "sky130_fd_sc_hd__a31o_2": 15,
+            "sky130_fd_sc_hd__a31oi_2": 3,
+            "sky130_fd_sc_hd__a32o_2": 2,
+            "sky130_fd_sc_hd__and2_2": 70,
+            "sky130_fd_sc_hd__and2b_2": 52,
+            "sky130_fd_sc_hd__and3_2": 43,
+            "sky130_fd_sc_hd__and3b_2": 5,
+            "sky130_fd_sc_hd__and4_2": 1,
+            "sky130_fd_sc_hd__and4b_2": 2,
+            "sky130_fd_sc_hd__and4bb_2": 1,
+            "sky130_fd_sc_hd__conb_1": 16,
+            "sky130_fd_sc_hd__dfrtp_2": 16,
+            "sky130_fd_sc_hd__inv_2": 32,
+            "sky130_fd_sc_hd__mux2_1": 12,
+            "sky130_fd_sc_hd__nand2_2": 113,
+            "sky130_fd_sc_hd__nand2b_2": 45,
+            "sky130_fd_sc_hd__nand3_2": 13,
+            "sky130_fd_sc_hd__nand3b_2": 1,
+            "sky130_fd_sc_hd__nand4_2": 1,
+            "sky130_fd_sc_hd__nor2_2": 151,
+            "sky130_fd_sc_hd__nor3_2": 29,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o211a_2": 22,
+            "sky130_fd_sc_hd__o211ai_2": 3,
+            "sky130_fd_sc_hd__o21a_2": 42,
+            "sky130_fd_sc_hd__o21ai_2": 45,
+            "sky130_fd_sc_hd__o21ba_2": 11,
+            "sky130_fd_sc_hd__o21bai_2": 9,
+            "sky130_fd_sc_hd__o221a_2": 1,
+            "sky130_fd_sc_hd__o22a_2": 7,
+            "sky130_fd_sc_hd__o2bb2a_2": 5,
+            "sky130_fd_sc_hd__o2bb2ai_2": 1,
+            "sky130_fd_sc_hd__o311a_2": 4,
+            "sky130_fd_sc_hd__o311ai_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 10,
+            "sky130_fd_sc_hd__o31ai_2": 3,
+            "sky130_fd_sc_hd__o32a_2": 3,
+            "sky130_fd_sc_hd__o32ai_2": 1,
+            "sky130_fd_sc_hd__or2_2": 92,
+            "sky130_fd_sc_hd__or3_2": 36,
+            "sky130_fd_sc_hd__or3b_2": 9,
+            "sky130_fd_sc_hd__or4_2": 4,
+            "sky130_fd_sc_hd__or4b_2": 1,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 213,
+            "sky130_fd_sc_hd__xor2_2": 85
+         }
+      }
+}
+
+139. Printing statistics.
+
+=== tt_um_connerdaehler_boop ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1401        - wires
+     1436        - wire bits
+       24        - public wires
+       59        - public wire bits
+        8        - ports
+       43        - port bits
+     1417  1.4E+04 cells
+        1   12.512   sky130_fd_sc_hd__a2111o_2
+        8   80.077   sky130_fd_sc_hd__a211o_2
+       14  175.168   sky130_fd_sc_hd__a211oi_2
+       21  210.202   sky130_fd_sc_hd__a21bo_2
+        6   67.565   sky130_fd_sc_hd__a21boi_2
+       56   490.47   sky130_fd_sc_hd__a21o_2
+       64  560.538   sky130_fd_sc_hd__a21oi_2
+        1   11.261   sky130_fd_sc_hd__a221o_2
+        6   60.058   sky130_fd_sc_hd__a22o_2
+        1   12.512   sky130_fd_sc_hd__a22oi_2
+        4   45.043   sky130_fd_sc_hd__a2bb2o_2
+        1   15.014   sky130_fd_sc_hd__a311oi_2
+       15  131.376   sky130_fd_sc_hd__a31o_2
+        3   37.536   sky130_fd_sc_hd__a31oi_2
+        2   22.522   sky130_fd_sc_hd__a32o_2
+       70  525.504   sky130_fd_sc_hd__and2_2
+       52  455.437   sky130_fd_sc_hd__and2b_2
+       43   322.81   sky130_fd_sc_hd__and3_2
+        5   50.048   sky130_fd_sc_hd__and3b_2
+        1    10.01   sky130_fd_sc_hd__and4_2
+        2   22.522   sky130_fd_sc_hd__and4b_2
+        1   12.512   sky130_fd_sc_hd__and4bb_2
+       16   60.058   sky130_fd_sc_hd__conb_1
+       16  420.403   sky130_fd_sc_hd__dfrtp_2
+       32  120.115   sky130_fd_sc_hd__inv_2
+       12   135.13   sky130_fd_sc_hd__mux2_1
+      113  706.928   sky130_fd_sc_hd__nand2_2
+       45  394.128   sky130_fd_sc_hd__nand2b_2
+       13  130.125   sky130_fd_sc_hd__nand3_2
+        1   11.261   sky130_fd_sc_hd__nand3b_2
+        1   12.512   sky130_fd_sc_hd__nand4_2
+      151  944.656   sky130_fd_sc_hd__nor2_2
+       29  290.278   sky130_fd_sc_hd__nor3_2
+        2   25.024   sky130_fd_sc_hd__o2111a_2
+       22  220.211   sky130_fd_sc_hd__o211a_2
+        3   37.536   sky130_fd_sc_hd__o211ai_2
+       42  367.853   sky130_fd_sc_hd__o21a_2
+       45  394.128   sky130_fd_sc_hd__o21ai_2
+       11  110.106   sky130_fd_sc_hd__o21ba_2
+        9  101.347   sky130_fd_sc_hd__o21bai_2
+        1   11.261   sky130_fd_sc_hd__o221a_2
+        7   70.067   sky130_fd_sc_hd__o22a_2
+        5   56.304   sky130_fd_sc_hd__o2bb2a_2
+        1   15.014   sky130_fd_sc_hd__o2bb2ai_2
+        4   45.043   sky130_fd_sc_hd__o311a_2
+        1   16.266   sky130_fd_sc_hd__o311ai_2
+       10  100.096   sky130_fd_sc_hd__o31a_2
+        3   37.536   sky130_fd_sc_hd__o31ai_2
+        3   33.782   sky130_fd_sc_hd__o32a_2
+        1   16.266   sky130_fd_sc_hd__o32ai_2
+       92  575.552   sky130_fd_sc_hd__or2_2
+       36  270.259   sky130_fd_sc_hd__or3_2
+        9   78.826   sky130_fd_sc_hd__or3b_2
+        4   35.034   sky130_fd_sc_hd__or4_2
+        1    10.01   sky130_fd_sc_hd__or4b_2
+        1   12.512   sky130_fd_sc_hd__or4bb_2
+      213 3.46E+03   sky130_fd_sc_hd__xnor2_2
+       85 1.38E+03   sky130_fd_sc_hd__xor2_2
+
+   Chip area for module '\tt_um_connerdaehler_boop': 14043.468800
+     of which used for sequential elements: 420.403200 (2.99%)
+
+140. Executing Verilog backend.
+Dumping module `\tt_um_connerdaehler_boop'.
+
+141. Executing JSON backend.

@@ -1,0 +1,61 @@
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99:33: Operator SUB expects 16 bits on the LHS, but LHS's SIGNED generates 9 bits.
+                                                                                            : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+   99 |         dx = $signed({1'b0, x}) - lx;
+      |                                 ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.044
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:99:33: Operator SUB expects 16 bits on the RHS, but RHS's VARREF 'lx' generates 9 bits.
+                                                                                            : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+   99 |         dx = $signed({1'b0, x}) - lx;
+      |                                 ^
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100:33: Operator SUB expects 16 bits on the LHS, but LHS's SIGNED generates 9 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  100 |         dy = $signed({1'b0, y}) - ly;
+      |                                 ^
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:100:33: Operator SUB expects 16 bits on the RHS, but RHS's VARREF 'ly' generates 9 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  100 |         dy = $signed({1'b0, y}) - ly;
+      |                                 ^
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104:26: Operator SUB expects 32 bits on the LHS, but LHS's CONST '16'shff' generates 16 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  104 |         light = 16'sd255 - (dist2 >>> 7);
+      |                          ^
+%Warning-WIDTHTRUNC: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:104:15: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                                                                            : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  104 |         light = 16'sd255 - (dist2 >>> 7);
+      |               ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.044
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:116:41: Operator SHIFTR expects 16 bits on the LHS, but LHS's VARREF 'in_pixel' generates 8 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  116 |                 tmp = light + (in_pixel >>> 1);
+      |                                         ^~~
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123:41: Operator SHIFTR expects 16 bits on the LHS, but LHS's VARREF 'in_pixel' generates 8 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  123 |                 tmp = light + (in_pixel >>> 1) + (x >>> 3);
+      |                                         ^~~
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:123:53: Operator SHIFTR expects 16 bits on the LHS, but LHS's VARREF 'x' generates 8 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  123 |                 tmp = light + (in_pixel >>> 1) + (x >>> 3);
+      |                                                     ^~~
+%Warning-WIDTHTRUNC: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:132:21: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                                            : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  132 |                 tmp = dist2 >> 5;
+      |                     ^
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:145:39: Operator SHIFTR expects 16 bits on the LHS, but LHS's VARREF 'in_pixel' generates 8 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  145 |                 tmp = tmp + (in_pixel >> 5);
+      |                                       ^~
+%Warning-WIDTHEXPAND: /foss/designs/ece429-finalproject/src/procedural_graphics_core.v:153:41: Operator SHIFTR expects 16 bits on the LHS, but LHS's VARREF 'in_pixel' generates 8 bits.
+                                                                                             : ... note: In instance 'tt_um_connerdaehler_boop.graphics_core'
+  153 |                 tmp = light + (in_pixel >>> 1);
+      |                                         ^~~
+%Warning-UNUSEDSIGNAL: /foss/designs/ece429-finalproject/src/project.v:4:23: Bits of signal are not used: 'ui_in'[7:4]
+                                                                           : ... note: In instance 'tt_um_connerdaehler_boop'
+    4 |     input  wire [7:0] ui_in,
+      |                       ^~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.044
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.593 MB sources in 449 modules, into 0.031 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.024 s (elab=0.004, cvt=0.002, bld=0.000); cpu 0.024 s on 1 threads; alloced 38.352 MB

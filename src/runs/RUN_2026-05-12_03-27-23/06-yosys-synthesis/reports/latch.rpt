@@ -1,0 +1,10 @@
+
+16. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\procedural_graphics_core.\pixel_out' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dx' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dy' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\dist2' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\light' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\tmp' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\lx' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.
+No latch inferred for signal `\procedural_graphics_core.\ly' from process `\procedural_graphics_core.$proc$/foss/designs/ece429-finalproject/src/procedural_graphics_core.v:50$9'.

@@ -1,0 +1,1 @@
+openroad -exit -no_splash -metrics /foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/20-openroad-generatepdn/or_metrics_out.json /usr/local/lib/python3.12/dist-packages/librelane/scripts/openroad/pdn.tcl

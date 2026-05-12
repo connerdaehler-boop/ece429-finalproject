@@ -1,0 +1,72 @@
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/27-openroad-globalplacement/tt_um_connerdaehler_boop.odb'…
+Reading design constraints file at '/usr/local/lib/python3.12/dist-packages/librelane/scripts/base.sdc'…
+[INFO] Using clock clk…
+[INFO] Setting output delay to: 10
+[INFO] Setting input delay to: 10
+[INFO] Setting load to: 0.033442
+[INFO] Setting clock uncertainty to: 0.25
+[INFO] Setting clock transition to: 0.1499999999999999944488848768742172978818416595458984375
+[INFO] Setting timing derate to: 5%
+[INFO] Setting RC values…
+[INFO RSZ-0027] Inserted 13 input buffers.
+[INFO RSZ-0058] Using max wire length 6335um.
+Iteration | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------
+        0 |       0 |       0 |             0 |      1465
+      100 |      90 |       3 |             2 |      1365
+      200 |     179 |       3 |             2 |      1265
+      300 |     259 |       3 |             2 |      1165
+      400 |     344 |       3 |             2 |      1065
+      500 |     436 |       3 |             2 |       965
+      600 |     533 |       5 |             4 |       865
+      700 |     621 |       5 |             4 |       765
+      800 |     711 |       5 |             4 |       665
+      900 |     807 |       6 |             5 |       565
+     1000 |     900 |       6 |             5 |       465
+     1100 |     993 |       6 |             5 |       365
+     1200 |    1084 |       6 |             5 |       265
+     1300 |    1174 |       8 |             7 |       165
+     1400 |    1258 |      31 |            22 |        65
+    final |    1270 |      35 |            25 |         0
+---------------------------------------------------------
+[INFO RSZ-0034] Found 3 slew violations.
+[INFO RSZ-0035] Found 22 fanout violations.
+[INFO RSZ-0038] Inserted 35 buffers in 25 nets.
+[INFO RSZ-0039] Resized 1270 instances.
+[INFO RSZ-0042] Inserted 16 tie sky130_fd_sc_hd__conb_1 instances.
+Placement Analysis
+---------------------------------
+total displacement       2990.8 u
+average displacement        1.5 u
+max displacement            9.2 u
+original HPWL           23805.6 u
+legalized HPWL          26341.2 u
+delta HPWL                   11 %
+
+[INFO DPL-0020] Mirrored 543 instances
+[INFO DPL-0021] HPWL before           26341.2 u
+[INFO DPL-0022] HPWL after            25491.6 u
+[INFO DPL-0023] HPWL delta               -3.2 %
+[INFO] Setting RC values…
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               122     457.94
+  Tap cell                                378     472.95
+  Timing Repair Buffer                     48     275.26
+  Inverter                                 32     120.12
+  Sequential cell                          16     434.17
+  Multi-Input combinational cell         1369   10313.64
+  Total                                  1965   12074.08
+Writing OpenROAD database to '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/31-openroad-repairdesignpostgpl/tt_um_connerdaehler_boop.odb'…
+Writing netlist to '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/31-openroad-repairdesignpostgpl/tt_um_connerdaehler_boop.nl.v'…
+Writing powered netlist to '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/31-openroad-repairdesignpostgpl/tt_um_connerdaehler_boop.pnl.v'…
+Writing layout to '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/31-openroad-repairdesignpostgpl/tt_um_connerdaehler_boop.def'…
+Writing timing constraints to '/foss/designs/ece429-finalproject/src/runs/RUN_2026-05-12_03-27-23/31-openroad-repairdesignpostgpl/tt_um_connerdaehler_boop.sdc'…

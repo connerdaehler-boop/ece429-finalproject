@@ -1,0 +1,37 @@
+125. Printing statistics.
+
+=== tt_um_connerdaehler_boop ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2062 wires
+     2155 wire bits
+       12 public wires
+       91 public wire bits
+        8 ports
+       43 port bits
+     2080 cells
+      738   $_ANDNOT_
+       25   $_AND_
+       16   $_DFFE_PN0P_
+       20   $_MUX_
+       41   $_NAND_
+      131   $_NOR_
+       93   $_NOT_
+      116   $_ORNOT_
+      238   $_OR_
+      197   $_XNOR_
+      465   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFFE_PN0P_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
